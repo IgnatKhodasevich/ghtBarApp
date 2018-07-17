@@ -1,44 +1,90 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let bodyParser = require('body-parser');
+let hbs = require('express-handlebars');
+let session = require('express-session');
+let expressValidator = require('express-validator');
+let passport = require('passport');
+let favicon = require('serve-favicon');
+let flash = require('connect-flash');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+let env = require('prod');
 
-var app = express();
+// Init
+let app = express();
 
-require('dotenv').config();
+//body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(expressValidator());
+
+////DataBase Init////
+
+//Models
+let models = require('./models');
+
+//Sync Database
+models.sequelize.sync().then(function() {
+    console.log('Nice! Database looks fine')
+}).catch(function(err) {
+    console.log(err, "Something went wrong with the Database Update!")
+});
 
 // view engine setup
+app.engine('hbs', hbs({extname: '.hbs', defaultLayout: 'layout',
+    layoutsDir: __dirname + '/views/layouts/'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
+app.use(flash());
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+
+/// Routes
+app.get('/', function(req, res) {
+
+    res.render('signin', { title: 'GHT Bar' });
+
+});
+
+
+// express session
+app.use(session({
+    cookie: { maxAge: 60000},
+    secret: 'lolly bomb',
+    saveUninitialized: true,
+    resave: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//load passport strategies
+require('./config/passport.js')(passport, models.user);
+
+let authRoute = require('./routes/auth.js')(app, passport);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get('.env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
@@ -46,27 +92,10 @@ app.use(function(err, req, res, next) {
 });
 
 
-// Handlebars default config
-const hbs = require('hbs');
-const fs = require('fs');
-
-const partialsDir = __dirname + '/views/partials';
-
-const filenames = fs.readdirSync(partialsDir);
-
-filenames.forEach(function (filename) {
-  const matches = /^([^.]+).hbs$/.exec(filename);
-  if (!matches) {
-    return;
-  }
-  const name = matches[1];
-  const template = fs.readFileSync(partialsDir + '/' + filename, 'utf8');
-  hbs.registerPartial(name, template);
+app.listen(app.get('port'), function () {
+    console.log('Server started on port ' + app.get('port'));
 });
 
-hbs.registerHelper('json', function(context) {
-    return JSON.stringify(context, null, 2);
-});
 
 
 module.exports = app;
