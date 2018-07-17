@@ -2,15 +2,15 @@
 
   "production": {
 
-    "username": "root",
+    "username": "",
 
-    "password": "root",
+    "password": "",
 
-    "database": "GHT_BAR",
+    "database": "",
 
-    "host": "127.0.0.1",
+    "host": "",
 
-    "dialect": "mysql"
+    "dialect": ""
 
   },
 
