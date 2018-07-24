@@ -14,9 +14,18 @@
                             <input class="form-control" placeholder="Password" name="password" type="password" value="">
                         </div>
                         <!-- Change this to a button or input when using this as a form -->
+                        <div class="form-group">
                         <button type="submit" class="btn btn-success" name="loginButton">Login!</button>
                         <a href="/signup" class="btn btn-light" name="registerButton">Registration</a>
+                        </div>
                     </fieldset>
+                    {{#if error}}
+                        <div class="form-group">
+                            <div class="alert alert-danger">
+                                <strong> {{ error }}</strong>
+                            </div>
+                        </div>
+                    {{/if}}
                 </form>
             </div>
         </div>

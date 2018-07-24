@@ -40,7 +40,9 @@
 
     "port": 3306,
 
-    "dialect": "mysql"
+    "dialect": "mysql",
+
+    "sessionTime": 6000000
 
   }
 

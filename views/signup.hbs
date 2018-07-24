@@ -4,9 +4,6 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Registration</h3>
             </div>
-            {{#if message}}
-                <p>{{ message }}</p>
-            {{/if}}
             <div class="panel-body">
                 <form role="form" method="post" action="/signup">
                     <input type="hidden" value="0" id="isAdmin" name="isAdmin">
@@ -24,8 +21,17 @@
                             <input class="form-control" placeholder="Retype password" id="rePassword" name="rePassword" type="password" value="">
                         </div>
                         <!-- Change this to a button or input when using this as a form -->
+                        <div class="form-group">
                         <a href="/signin" class="btn btn-success" name="loginButton" value="1">Login</a>
                         <button type="submit" class="btn btn-light" name="registerButton">Register!</button>
+                        </div>
+                            {{#if error}}
+                            <div class="form-group">
+                                <div class="alert alert-danger">
+                                <strong> {{ error }}</strong>
+                                </div>
+                            </div>
+                        {{/if}}
                     </fieldset>
                 </form>
             </div>
