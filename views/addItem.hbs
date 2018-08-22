@@ -1,0 +1,50 @@
+<div class="row h-100 justify-content-center align-items-center" id="header">
+    <div class="col-sm-3 col-md-4"></div>
+    <div class="col-sm-3 col-md-5">
+        <h2 id="title">Welcome to ghT Bar, {{ username }}</h2>
+    </div>
+    <div class="col-sm-3 col-md-3">
+        <div class="btn-group">
+            <a href="/dashboard" class="btn btn-outline-success" name="addButton">Bottles</a>
+            <a href="/users" class="btn btn btn-outline-primary" name="usersButton">Users</a>
+            <a href="/logout" class="btn btn btn-outline-secondary" name="logoutButton">Log out</a>
+        </div>
+    </div>
+</div>
+<div class="row h-100 justify-content-center align-items-center">
+    <form>
+        <label for="name" class="label label-default">Name</label>
+        <input type="text"
+               title="Name"
+               class="form-control"
+               id="name"
+               name="name">
+        <label for="type" class="label label-default">Type</label>
+        <select class="form-control" id="type" name="type">
+            <option value="0"
+                    hidden
+            ></option>
+            {{#if types}}
+                {{#each types}}
+                    <option value="{{this.id}}">{{this.countryOrigin}}</option> <!--!!!!!!!!-->
+                {{/each}}
+            {{/if}}
+        </select>
+        <label for="strength" class="label label-default">Strength</label>
+        <input type="text"
+               name="strength"
+               id="strength"
+               class="form-control">
+        <label for="user" class="label label-default">User</label>
+        <select class="form-control" id="user" name="user">
+            <option value="0"
+                    hidden
+            ></option>
+            {{#if users}}
+                {{#each users}}
+                    <option value="{{this.id}}">{{this.countryOrigin}}</option> <!--!!!!!!!!-->
+                {{/each}}
+            {{/if}}
+        </select>
+    </form>
+</div>
