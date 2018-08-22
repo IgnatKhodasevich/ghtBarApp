@@ -10,7 +10,6 @@ let expressValidator = require('express-validator');
 let passport = require('passport');
 let favicon = require('serve-favicon');
 let flash = require('connect-flash');
-
 let env = require('prod');
 
 // Init
@@ -43,18 +42,13 @@ app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
 
 app.use(logger('dev'));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(path.resolve(__dirname, 'public')));
-app.use('/static', express.static(path.join(__dirname, 'public')));
 
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 /// Routes
 app.get('/', function(req, res) {
-
-    res.render('signin', { title: 'GHT Bar' });
-
+    res.render('signin', { title: 'ghT Bar' });
 });
-
 
 // express session
 app.use(session({
@@ -77,7 +71,6 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -89,11 +82,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
 app.listen(app.get('port'), function () {
     console.log('Server started on port ' + app.get('port'));
 });
-
-
 
 module.exports = app;

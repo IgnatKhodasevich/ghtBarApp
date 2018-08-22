@@ -4,11 +4,11 @@ var exports = module.exports = {};
 
 exports.signup = function(req, res) {
 
-    res.render('signup', { title: 'GHT Bar', error: req.flash('error')[0]});
+    res.render('signup', { title: 'ghT Bar', error: req.flash('error')[0]});
 
 };
 exports.signin = function(req, res) {
-    res.render('signin', { title: 'GHT Bar', error: req.flash('error')[0]});
+    res.render('signin', { title: 'ghT Bar', error: req.flash('error')[0]});
 
 };
 

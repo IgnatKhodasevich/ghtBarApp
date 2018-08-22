@@ -15,7 +15,6 @@ module.exports = function(app, passport) {
 
     app.post('/signup', passport.authenticate('local-signup', {
 
-
             successRedirect: '/dashboard',
 
             failureRedirect: '/signup',
@@ -42,5 +41,7 @@ module.exports = function(app, passport) {
         res.redirect('/signin');
 
     }
+
+    app.get('/addItem', itemController.addItem);
 
 };

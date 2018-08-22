@@ -5060,7 +5060,7 @@ input[type="button"].btn-block {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: start;
-  align-items: flex-start;
+  /*align-items: flex-start;*/
 }
 
 .media-body {

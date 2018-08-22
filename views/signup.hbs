@@ -22,8 +22,12 @@
                         </div>
                         <!-- Change this to a button or input when using this as a form -->
                         <div class="form-group">
-                        <a href="/signin" class="btn btn-success" name="loginButton" value="1">Login</a>
-                        <button type="submit" class="btn btn-light" name="registerButton">Register!</button>
+                            <div class="form-group">
+                                <div class="btn-group" id="loginButtons">
+                        <a href="/signin" class="btn btn-outline-success" name="loginButton" id="loginButton">Login</a>
+                        <button type="submit" class="btn btn-outline-secondary" name="registerButton" id="registerButton">Register!</button>
+                            </div>
+                            </div>
                         </div>
                             {{#if error}}
                             <div class="form-group">

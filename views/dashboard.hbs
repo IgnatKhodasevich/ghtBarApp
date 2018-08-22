@@ -1,37 +1,101 @@
-<div class="row h-100 justify-content-center align-items-center">
-    <div class="col-sm-3 col-md-3">
-
-    </div>
+<div class="row h-100 justify-content-center align-items-center" id="header">
+    <div class="col-sm-3 col-md-4"></div>
     <div class="col-sm-3 col-md-5">
-        <h1 id="title">Welcome to GHT Bar, {{ username }}</h1>
+        <h2 id="title">Welcome to ghT Bar, {{ username }}</h2>
     </div>
-    <div class="col-sm-3 col-md-2"></div>
-    <a href="/logout" class="btn btn-light" name="registerButton">Log out</a>
+    <div class="col-sm-3 col-md-3">
+      <div class="btn-group">
+    <a href="/addItem" class="btn btn-outline-success" name="addButton">Add bottle</a>
+    <a href="/users" class="btn btn btn-outline-primary" name="usersButton">Users</a>
+    <a href="/logout" class="btn btn btn-outline-secondary" name="logoutButton">Log out</a>
+      </div>
+    </div>
 </div>
     <div class="row h-100 justify-content-center align-items-center">
 <form>
+    <div class="search-box">
+        <div class="row" id="searchRow">
+            <div class="col-sm-3 col-md-6">
+                <input class="form-control"
+                       type="text"
+                       id="searchName"
+                       name="searchName"
+                       placeholder="Name"
+                       alt="Search by name">
+            </div>
+        </div>
+        <div class="row" id="searchRow">
+            <div class="col-sm-3 col-md-6">
+                <input class="form-control"
+                       type="text"
+                       id="searchName"
+                       name="searchName"
+                       placeholder="Strength"
+                       alt="Search by name">
+            </div>
+        </div>
+        <div class="row" id="searchRow">
+            <div class="col-sm-3 col-md-5 col-lg-5">
+                <div>
+                    <select class="form-control" id="searchSelect">
+                        <option value="0"
+                                hidden
+                        >Country</option>
+                        {{#if items}}
+                            {{#each items}}
+                                <option value="{{this.id}}">{{this.countryOrigin}}</option>
+                            {{/each}}
+                        {{/if}}
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-5 col-lg-5" id="searchSelectRow">
+                <div>
+                    <select class="form-control" id="searchSelect">
+                        <option value="0"
+                                hidden
+                        >User</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                        <option value="5">Option 5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-1 col-md-1 col-lg-1">
+                <a href="/dashboard" id="cancelSearch" class="btn btn-outline-danger" name="cancelSearch">&#10060;</a></div>
+        </div>
+
+    </div>
     {{#if items}}
 
-            <div class="media-body">
                 {{#each items }}
-                    <div class="media border p-1">
+                <div class="media border p-3" style="width: 500px">
+                    <div class="media">
                         <img src="/static/images/{{this.image}}"
-                             class="align-self-start mr-3"
-                             style="width:100px; height: auto;">
+                             class="align-self-center mr-3"
+                             style="width:80px; height: 100px"
+                             alt="{{this.name}}">
                         <div class="media-body">
-                            <h4> {{this.name}}</h4>
+                            <input type="hidden" name="{{this.id}}"/>
+                            <h4>{{this.name}}</h4>
                             <p>&bull; {{this.strength}} %</p>
-                            <p>&bull; {{this.countryOrigin}}</p>
-                            <p>&bull; {{this.type}}</p>
+                            <p>&bull; {{this.countryOrigin}} <img src="/static/images/blank.gif" class="flag flag-us" alt="USA" /></p><!-change->
+                            <p>&bull;  {{this.type}}</p>
                         </div>
-                    </div>
-                    {{/each}}
-            </div>
 
+                        <div class="btn-group" id="buttonsGroup">
+                        <button type="button" id="modifyButton" class="btn btn-outline-dark">Modify</button>
+                        <button type="button" id="modifyButton" class="btn btn-outline-danger">Delete</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                {{/each}}
     {{else}}
         <p><em>There are currently no items.</em></p>
     {{/if}}
 </form>
-</div>
-
-
+    </div>
