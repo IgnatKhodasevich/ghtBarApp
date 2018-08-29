@@ -42,6 +42,8 @@ module.exports = function(app, passport) {
 
     }
 
-    app.get('/addItem', itemController.addItem);
+    app.get('/addItemPage', itemController.addItemPage);
+
+    app.post('/addItem', itemController.addItem);
 
 };

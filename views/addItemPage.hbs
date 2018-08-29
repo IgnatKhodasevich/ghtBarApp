@@ -26,7 +26,7 @@
             ></option>
             {{#if types}}
                 {{#each types}}
-                    <option value="{{this.id}}">{{this.countryOrigin}}</option> <!--!!!!!!!!-->
+                    <option value="{{this.id}}">{{this.type}}</option> <!--!!!!!!!!-->
                 {{/each}}
             {{/if}}
         </select>
@@ -42,7 +42,17 @@
             ></option>
             {{#if users}}
                 {{#each users}}
-                    <option value="{{this.id}}">{{this.countryOrigin}}</option> <!--!!!!!!!!-->
+                    <option value="{{this.id}}">{{this.username}}</option> <!--!!!!!!!!-->
+                {{/each}}
+            {{/if}}
+        </select>
+        <select class="form-control" id="countryOfOrigin" name="countryOfOrigin">
+            <option value="0"
+                    hidden
+            ></option>
+            {{#if countries}}
+                {{#each countries}}
+                    <option value="{{this.id}}">{{this.country}}</option> <!--!!!!!!!!-->
                 {{/each}}
             {{/if}}
         </select>
