@@ -10,6 +10,7 @@ let db = {};
 let UserModel = require(__dirname + '/user');
 let ItemModel = require(__dirname + '/item');
 let TypeModel = require(__dirname + '/type');
+let CountryModel = require(__dirname + '/country');
 
 
 fs
@@ -34,7 +35,7 @@ db.Sequelize = Sequelize;
 const User = UserModel(sequelize, Sequelize);
 const Item = ItemModel(sequelize, Sequelize);
 const Type = TypeModel(sequelize, Sequelize);
-
+const Country = CountryModel(sequelize, Sequelize);
 User.hasOne(Item);
 Type.hasOne(Item);
 
