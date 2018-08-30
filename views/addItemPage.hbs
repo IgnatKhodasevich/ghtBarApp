@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="row h-100 justify-content-center align-items-center">
-    <form>
+    <form method="post" action="/addItem">
         <label for="name" class="label label-default">Name</label>
         <input type="text"
                title="Name"
@@ -26,7 +26,7 @@
             ></option>
             {{#if types}}
                 {{#each types}}
-                    <option value="{{this.id}}">{{this.countryOrigin}}</option> <!--!!!!!!!!-->
+                    <option value="{{this.id}}">{{this.type}}</option> <!--!!!!!!!!-->
                 {{/each}}
             {{/if}}
         </select>
@@ -42,9 +42,28 @@
             ></option>
             {{#if users}}
                 {{#each users}}
-                    <option value="{{this.id}}">{{this.countryOrigin}}</option> <!--!!!!!!!!-->
+                    <option value="{{this.id}}">{{this.username}}</option> <!--!!!!!!!!-->
                 {{/each}}
             {{/if}}
         </select>
+        <label for="countryOfOrigin" class="label label-default">Country</label>
+        <select class="form-control" id="countryOfOrigin" name="countryOfOrigin">
+            <option value="0"
+                    hidden
+            ></option>
+            {{#if countries}}
+                {{#each countries}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                {{/each}}
+            {{/if}}
+        </select>
+        <label for="image" class="label label-default">Strength</label>
+        <input type="file"
+               name="image"
+               id="image"
+               class="form-control">
+        <br>
+        <button type="submit" class="btn btn-outline-success" name="addItem" id="addItem">Add bottle</button>
+
     </form>
 </div>

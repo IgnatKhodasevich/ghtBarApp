@@ -82,7 +82,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(app.get('port'), function () {
+app.listen(3000, function () {
     console.log('Server started on port ' + app.get('port'));
 });
 

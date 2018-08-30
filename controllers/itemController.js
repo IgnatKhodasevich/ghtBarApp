@@ -1,6 +1,9 @@
 'use strict';
 let models = require('../models');
 let Item = models.item;
+let Type = models.type;
+let User = models.user;
+let Country = models.country;
 
 var exports = module.exports = {};
 
@@ -16,10 +19,47 @@ exports.dashboard = function (req, res) {
 
 };
 
-exports.addItem = function(req, res) {
+exports.addItemPage = function(req, res) {
+    Type.all().then(function (types) {
+        User.all().then(function (users) {
+            Country.all().then(function (countries) {
+                let data = {
+                    types: types,
+                    users: users,
+                    countries: countries
+                };
+                res.render('addItemPage', {
+                    title: 'ghT Bar',
+                    username: req.user.username,
+                    types: data.types,
+                    users: data.users,
+                    countries: data.countries,
+                    error: req.flash('error')[0]
+                })
+            })
+            }
+        )
+    }).catch(function (error) {
+        res.status(400).send(error);
+    });
 
-    res.render('addItem', { title: 'ghT Bar',
-                            username: req.user.username,
-                            error: req.flash('error')[0]});
+};
 
+exports.addItem = function (req, res) {
+    let data = {
+        name: req.body.name,
+        type: req.body.type,
+        strength: req.body.strength,
+        userId: req.body.userId,
+        countryOrigin: req.body.countryOrigin,
+
+    };
+
+    Item.create(data).then(function (newItem) {
+        if (newItem) {
+            res.redirect('/');
+        }
+
+
+    })
 };

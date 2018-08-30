@@ -10,18 +10,18 @@ body {
 }
 
 #loginButtons {
-    width: 193px;
+    width: 193px; !important;
 }
 
 #loginButton {
-    width: 96.5px;
+    width: 96.5px; !important;
 }
 
 #registerButton {
-    width: 96.5px;
+    width: 96.5px; !important;
 }
 #registrationButton {
-    width: fit-content;
+    width: fit-content;!important;
 }
 #modifyButton {
     height: fit-content;
