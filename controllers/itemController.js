@@ -57,7 +57,7 @@ exports.addItem = function (req, res) {
 
     Item.create(data).then(function (newItem) {
         if (newItem) {
-            res.redirect('/');
+           console.log(newItem.toString());
         }
 
 

@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="row h-100 justify-content-center align-items-center">
-    <form method="post" action="/addItem">
+    <form method="post" id="addItem">
         <label for="name" class="label label-default">Name</label>
         <input type="text"
                title="Name"
@@ -63,7 +63,41 @@
                id="image"
                class="form-control">
         <br>
-        <button type="submit" class="btn btn-outline-success" name="addItem" id="addItem">Add bottle</button>
+        <a class="btn btn-outline-success" name="addItemButton" id="addItemButton">Add bottle</a>
 
     </form>
 </div>
+<script>
+    $('#addItemButton').click(function () {
+        $.ajax({
+            url: "/addItem",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: {
+                name: $('#name').val(),
+                type: $('#type').val(),
+                strength: $('#strength').val(),
+                userId: $('#userId').val(),
+                countryOrigin: $('#countryOfOrigin').val(),
+            },
+
+            cache: false,
+            timeout: 5000,
+            complete: function() {
+
+            },
+
+            success: function (data) {
+                console.log(data);
+                $('#addItem')[0].reset();
+
+            },
+
+            error: function(error) {
+                console.log(error);
+            }
+        });
+
+    })
+</script>
