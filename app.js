@@ -11,6 +11,7 @@ let passport = require('passport');
 let favicon = require('serve-favicon');
 let flash = require('connect-flash');
 let env = require('prod');
+let fileUpload = require('express-fileupload');
 
 // Init
 let app = express();
@@ -60,6 +61,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(fileUpload());
 
 //load passport strategies
 require('./config/passport.js')(passport, models.user);

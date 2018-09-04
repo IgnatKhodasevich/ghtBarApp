@@ -46,20 +46,53 @@ exports.addItemPage = function(req, res) {
 };
 
 exports.addItem = function (req, res) {
-    let data = {
-        name: req.body.name,
-        type: req.body.type,
-        strength: req.body.strength,
-        userId: req.body.userId,
-        countryOrigin: req.body.countryOrigin,
+    Type.all().then(function (types) {
+        User.all().then(function (users) {
+                Country.all().then(function (countries) {
+                    let data = {
+                        types: types,
+                        users: users,
+                        countries: countries
+                    };
+                    let imageFile = req.files.image;
+                    imageFile.mv('/public/images/' + req.body.name + '.png', function (err) {
+                        if (err){
+                            console.log(err.toString());
+                        }
+                            // return res.status(500).send(err);
+                    });
+                    let itemData = {
+                        name: req.body.name,
+                        type: req.body.type,
+                        strength: req.body.strength,
+                        userId: req.body.userId,
+                        countryOrigin: req.body.countryOrigin,
 
-    };
-
-    Item.create(data).then(function (newItem) {
-        if (newItem) {
-           console.log(newItem.toString());
-        }
 
 
-    })
+                    };
+
+                    Item.create(itemData).then(function (newItem) {
+                        if (newItem) {
+                            console.log(newItem.toString());
+                            let success = 'The bottle ' + newItem.name + ' was created'
+                        }
+
+
+                    });
+                    res.render('addItemPage', {
+                        title: 'ghT Bar',
+                        username: req.user.username,
+                        types: data.types,
+                        users: data.users,
+                        countries: data.countries,
+                        success: false,
+                        error: req.flash('error')[0]
+                    })
+                })
+            }
+        )
+    }).catch(function (error) {
+        res.status(400).send(error);
+    });
 };

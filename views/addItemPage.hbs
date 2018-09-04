@@ -12,7 +12,13 @@
     </div>
 </div>
 <div class="row h-100 justify-content-center align-items-center">
-    <form method="post" id="addItem">
+
+    <form method="post" id="addItem" action="addItem" encType="multipart/form-data">
+            <div class="row h-100 justify-content-center align-items-center" id="successAlert">
+                <div class="alert alert-success" role="alert" id="successAlert" hidden="{{success}}">
+                    Everything is ok
+                </div>
+            </div>
         <label for="name" class="label label-default">Name</label>
         <input type="text"
                title="Name"
@@ -57,47 +63,13 @@
                 {{/each}}
             {{/if}}
         </select>
-        <label for="image" class="label label-default">Strength</label>
+        <label for="image" class="label label-default">Picture</label>
         <input type="file"
                name="image"
                id="image"
                class="form-control">
         <br>
-        <a class="btn btn-outline-success" name="addItemButton" id="addItemButton">Add bottle</a>
+        <button class="btn btn-outline-success" type="submit" name="addItemButton" id="addItemButton">Add bottle</button>
 
     </form>
 </div>
-<script>
-    $('#addItemButton').click(function () {
-        $.ajax({
-            url: "/addItem",
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: {
-                name: $('#name').val(),
-                type: $('#type').val(),
-                strength: $('#strength').val(),
-                userId: $('#userId').val(),
-                countryOrigin: $('#countryOfOrigin').val(),
-            },
-
-            cache: false,
-            timeout: 5000,
-            complete: function() {
-
-            },
-
-            success: function (data) {
-                console.log(data);
-                $('#addItem')[0].reset();
-
-            },
-
-            error: function(error) {
-                console.log(error);
-            }
-        });
-
-    })
-</script>
