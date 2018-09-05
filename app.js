@@ -13,6 +13,8 @@ let flash = require('connect-flash');
 let env = require('prod');
 let fileUpload = require('express-fileupload');
 
+const public_path = path.join(__dirname, 'public/images/');
+
 // Init
 let app = express();
 

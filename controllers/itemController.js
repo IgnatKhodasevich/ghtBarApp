@@ -1,4 +1,5 @@
 'use strict';
+let path = require('path');
 let models = require('../models');
 let Item = models.item;
 let Type = models.type;
@@ -55,7 +56,8 @@ exports.addItem = function (req, res) {
                         countries: countries
                     };
                     let imageFile = req.files.image;
-                    imageFile.mv('/public/images/' + req.body.name + '.png', function (err) {
+                    let fileName = req.body.name + '.png';
+                    imageFile.mv(path.join(__dirname, '..', 'public/images/', fileName), function (err) {
                         if (err){
                             console.log(err.toString());
                         }
@@ -67,6 +69,7 @@ exports.addItem = function (req, res) {
                         strength: req.body.strength,
                         userId: req.body.userId,
                         countryOrigin: req.body.countryOrigin,
+                        image: fileName
 
 
 
