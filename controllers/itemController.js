@@ -14,8 +14,7 @@ exports.dashboard = function (req, res) {
         .then(items => res.render('dashboard', {
             title: 'ghT Bar',
             username: req.user.username,
-            items: items})
-            .catch(error => res.status(400).send(error)));
+            items: items}));
 
 
 };
@@ -57,12 +56,14 @@ exports.addItem = function (req, res) {
                     };
                     let imageFile = req.files.image;
                     let fileName = req.body.name + '.png';
-                    imageFile.mv(path.join(__dirname, '..', 'public/images/', fileName), function (err) {
-                        if (err){
-                            console.log(err.toString());
-                        }
+                    if (imageFile) {
+                        imageFile.mv(path.join(__dirname, '..', 'public/images/', fileName), function (err) {
+                            if (err) {
+                                console.log(err.toString());
+                            }
                             // return res.status(500).send(err);
-                    });
+                        });
+                    }
                     let itemData = {
                         name: req.body.name,
                         type: req.body.type,
@@ -99,3 +100,23 @@ exports.addItem = function (req, res) {
         res.status(400).send(error);
     });
 };
+exports.deleteItem = function (req, res) {
+    Item.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (deletedItem) {
+        console.log(deletedItem);
+    })
+
+};
+
+exports.showUsers = function (req, res) {
+    return User
+        .all()
+        .then(users => res.render('users', {
+            title: 'ghT Bar',
+            users: users
+        }));
+};
+

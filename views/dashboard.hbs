@@ -25,16 +25,6 @@
             </div>
         </div>
         <div class="row" id="searchRow">
-            <div class="col-sm-3 col-md-6">
-                <input class="form-control"
-                       type="text"
-                       id="searchName"
-                       name="searchName"
-                       placeholder="Strength"
-                       alt="Search by name">
-            </div>
-        </div>
-        <div class="row" id="searchRow">
             <div class="col-sm-3 col-md-5 col-lg-5">
                 <div>
                     <select class="form-control" id="searchSelect">
@@ -86,8 +76,16 @@
                         </div>
 
                         <div class="btn-group" id="buttonsGroup">
-                        <button type="button" id="modifyButton" class="btn btn-outline-dark">Modify</button>
-                        <button type="button" id="modifyButton" class="btn btn-outline-danger">Delete</button>
+                        <button type="button"
+                                id="modifyButton"
+                                name="modifyButton"
+                                onclick="window.location.href='/modifyItem/{{this.id}}'"
+                                class="btn btn-outline-dark">Modify</button>
+                        <button type="button"
+                                id="deleteButton"
+                                name="deleteButton"
+                                onclick="window.location.href='/deleteItem/{{this.id}}'"
+                                class="btn btn-outline-danger">Delete</button>
                         </div>
 
                     </div>

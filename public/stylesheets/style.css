@@ -25,7 +25,9 @@ body {
 }
 #modifyButton {
     height: fit-content;
-
+}
+#deleteButton {
+    height: fit-content;
 }
 #buttonsGroup {
     margin-left: 90px;

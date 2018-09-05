@@ -46,4 +46,8 @@ module.exports = function(app, passport) {
 
     app.post('/addItem', itemController.addItem);
 
+    app.delete('/deleteItem/: id', itemController.deleteItem);
+
+    app.get('/users', itemController.showUsers);
+
 };

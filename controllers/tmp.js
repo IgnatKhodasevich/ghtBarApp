@@ -47,4 +47,16 @@ $('#addItemButton').click(function () {
         }
     });
 
-})
+});
+
+
+.then(function () {
+    return Item
+        .all()
+        .then(items => res.render('dashboard', {
+            title: 'ghT Bar',
+            username: req.user.username,
+            items: items
+        })
+            .catch(error => res.status(400).send(error)));
+}).catch(error => res.status(400).send(error));
