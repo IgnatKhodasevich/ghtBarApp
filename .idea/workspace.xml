@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c7f677c-5aef-4547-a498-2ad8d0b96f42" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/views/users.hbs" />
+    <list default="true" id="5c7f677c-5aef-4547-a498-2ad8d0b96f42" name="Default" comment="add new code :)">
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/images/Blue Label.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/images/Red Label.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/public/images/hh.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/controllers/itemController.js" afterPath="$PROJECT_DIR$/controllers/itemController.js" />
-      <change beforePath="$PROJECT_DIR$/controllers/tmp.js" afterPath="$PROJECT_DIR$/controllers/tmp.js" />
-      <change beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
-      <change beforePath="$PROJECT_DIR$/routes/auth.js" afterPath="$PROJECT_DIR$/routes/auth.js" />
-      <change beforePath="$PROJECT_DIR$/views/addItemPage.hbs" afterPath="$PROJECT_DIR$/views/addItemPage.hbs" />
-      <change beforePath="$PROJECT_DIR$/views/dashboard.hbs" afterPath="$PROJECT_DIR$/views/dashboard.hbs" />
-      <change beforePath="$PROJECT_DIR$/views/error.hbs" afterPath="$PROJECT_DIR$/views/error.hbs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -431,7 +426,7 @@
       <workItem from="1535652690439" duration="2770000" />
       <workItem from="1535720661692" duration="3038000" />
       <workItem from="1536083324079" duration="1850000" />
-      <workItem from="1536170094218" duration="5034000" />
+      <workItem from="1536170094218" duration="5131000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1531860776592</created>
@@ -496,11 +491,18 @@
       <option name="project" value="LOCAL" />
       <updated>1535720712391</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add new code :)">
+      <created>1536180571112</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1536180571112</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106555000" />
+    <option name="totallyTimeSpent" value="106652000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -561,7 +563,8 @@
     <MESSAGE value="initial" />
     <MESSAGE value="add item" />
     <MESSAGE value="add itemооо" />
-    <option name="LAST_COMMIT_MESSAGE" value="add itemооо" />
+    <MESSAGE value="add new code :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new code :)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
