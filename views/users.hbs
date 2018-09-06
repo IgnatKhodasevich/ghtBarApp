@@ -8,24 +8,30 @@
         <th scope="col">E-mail</th>
         <th scope="col">Password</th>
         <th scope="col">Admin</th>
+        <th scope="colgroup">
+            <div class="btn-group">
+            <a href="/addItemPage" class="btn btn-outline-light" name="addButton">Add bottle</a>
+            <a href="/dashboard" class="btn btn btn-outline-light" name="usersButton">Bottles</a>
+            <a href="/logout" class="btn btn btn-outline-light" name="logoutButton">Log out</a>
+        </div></th>
     </tr>
     </thead>
     <tbody>
-    {{#each users }}
+    {{#each users}}
     <tr>
         <th scope="row">{{this.id}}</th>
-        <td><input type="text" value="{{this.username}}" class="form-control" disabled title="Username"/></td>
-        <td>{{this.mail}}</td>
-        <td>{{this.password}}</td>
-        <td>{{this.isAdmin}}</td>
-
+        <td><input type="text" value="{{this.username}}" name="username" id="username_{{this.id}}" class="form-control" title="Username" disabled /></td>
+        <td><input type="text" value="{{this.mail}}" name="mail" id="mail_{{this.id}}" class="form-control" title="Email" disabled /> </td>
+        <td><input type="password" value="{{this.password}}" name="password" id="password_{{this.id}}" class="form-control" title="Password" disabled/></td>
+        <td id="Admin"><input type="checkbox" value="{{this.isAdmin}}" name="isAdmin" id="isAdmin" class="form-check-input position-static" title="Admin" disabled /></td>
+        <td><div class="btn-group" role="group">
+            <!--<a href="" class="btn btn-success">Add</a>-->
+            <a onclick="enable()" class="btn btn-info">Modify</a>
+            <a href="/deleteUser/{{this.id}}" class="btn btn-danger" onclick="alert('Are you sure ?')">Delete</a>
+            </div>
+        </td>
     </tr>
     {{/each}}
     </tbody>
 </table>
 {{/if}}
-<div class="btn-group">
-    <a href="/addItemPage" class="btn btn-outline-success" name="addButton">Add bottle</a>
-    <a href="/users" class="btn btn btn-outline-primary" name="usersButton">Users</a>
-    <a href="/logout" class="btn btn btn-outline-secondary" name="logoutButton">Log out</a>
-</div>

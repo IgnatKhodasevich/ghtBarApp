@@ -9,34 +9,43 @@ let Country = models.country;
 var exports = module.exports = {};
 
 exports.dashboard = function (req, res) {
-    return Item
-        .all()
-        .then(items => res.render('dashboard', {
-            title: 'ghT Bar',
-            username: req.user.username,
-            items: items}));
+    return User.all().then(function (users) {
+        Country.all().then(function (countries) {
+            Item
+                .all()
+                .then(items => res.render('dashboard', {
+                    title: 'ghT Bar',
+                    username: req.user.username,
+                    items: items,
+                    users: users,
+                    countries: countries,
+                    admin: req.user.isAdmin
+                }));
+        });
+
+    });
 
 
 };
 
-exports.addItemPage = function(req, res) {
+exports.addItemPage = function (req, res) {
     Type.all().then(function (types) {
         User.all().then(function (users) {
-            Country.all().then(function (countries) {
-                let data = {
-                    types: types,
-                    users: users,
-                    countries: countries
-                };
-                res.render('addItemPage', {
-                    title: 'ghT Bar',
-                    username: req.user.username,
-                    types: data.types,
-                    users: data.users,
-                    countries: data.countries,
-                    error: req.flash('error')[0]
+                Country.all().then(function (countries) {
+                    let data = {
+                        types: types,
+                        users: users,
+                        countries: countries
+                    };
+                    res.render('addItemPage', {
+                        title: 'ghT Bar',
+                        username: req.user.username,
+                        types: data.types,
+                        users: data.users,
+                        countries: data.countries,
+                        error: req.flash('error')[0]
+                    })
                 })
-            })
             }
         )
     }).catch(function (error) {
@@ -61,7 +70,7 @@ exports.addItem = function (req, res) {
                             if (err) {
                                 console.log(err.toString());
                             }
-                            // return res.status(500).send(err);
+
                         });
                     }
                     let itemData = {
@@ -71,7 +80,6 @@ exports.addItem = function (req, res) {
                         userId: req.body.userId,
                         countryOrigin: req.body.countryOrigin,
                         image: fileName
-
 
 
                     };
@@ -106,8 +114,8 @@ exports.deleteItem = function (req, res) {
             id: req.params.id
         }
     }).then(function (deletedItem) {
-        console.log(deletedItem);
-    })
+        res.redirect('/dashboard');
+    }).catch(error => console.log(error));
 
 };
 
@@ -120,3 +128,20 @@ exports.showUsers = function (req, res) {
         }));
 };
 
+exports.deleteUser = function (req, res) {
+    User.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (deletedItem) {
+        res.redirect('/users');
+    }).catch(error => console.log(error));
+};
+
+exports.searchItems = function (req, res) {
+    Item.findAll({
+        where: {
+            name: req.body.searchName
+        }
+    }).then(items =>res.send(items));
+};
