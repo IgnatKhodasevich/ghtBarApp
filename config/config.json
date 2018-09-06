@@ -2,15 +2,18 @@
 
   "production": {
 
-    "username": "",
+    "username": "Developer",
 
-    "password": "",
+    "password": "Developer1902",
 
-    "database": "",
+    "database": "ght_bar",
 
-    "host": "",
+    "host": "ght.bar",
 
-    "dialect": ""
+    "port": 3306,
+
+    "dialect": "mysql"
+
 
   },
 
