@@ -12,15 +12,18 @@ exports.dashboard = function (req, res) {
     return User.all().then(function (users) {
         Country.all().then(function (countries) {
             Item
-                .all()
-                .then(items => res.render('dashboard', {
+                .all().then(function (items) {
+                Type.all().then(types => res.render('dashboard', {
                     title: 'ghT Bar',
                     username: req.user.username,
                     items: items,
                     users: users,
                     countries: countries,
+                    types: types,
                     admin: req.user.isAdmin
                 }));
+            })
+
         });
 
     });

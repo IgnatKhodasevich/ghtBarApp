@@ -124,6 +124,7 @@ module.exports = function(passport, user) {
                 }
 
                 let userinfo = user.get();
+                console.info("User with login " + username + " successfully logged in.");
                 return done(null, userinfo);
 
 

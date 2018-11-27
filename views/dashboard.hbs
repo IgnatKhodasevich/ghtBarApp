@@ -36,6 +36,21 @@
                     <select class="form-control" id="searchSelect">
                         <option value="0"
                                 hidden
+                        >Type</option>
+                        {{#if types}}
+                            {{#each types}}
+                                <option value="{{this.type}}">{{this.type}}</option>
+                            {{/each}}
+                        {{/if}}
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-sm-3 col-md-5 col-lg-5">
+                <div>
+                    <select class="form-control" id="countrySearchSelect">
+                        <option value="0"
+                                hidden
                         >Country</option>
                         {{#if countries}}
                             {{#each countries}}
@@ -45,7 +60,10 @@
                     </select>
                 </div>
             </div>
-            <div class="col-sm-3 col-md-5 col-lg-5" id="searchSelectRow">
+        </div>
+        <div class="row" id="searchRow">
+
+            <div class="col-sm-3 col-md-5 col-lg-5">
                 <div>
                     <select class="form-control" id="searchSelect">
                         <option value="0"
@@ -60,6 +78,15 @@
                 </div>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1">
+                <div class="btn-group">
+                {{#if admin}}
+                    <a href="/addItemPage" class="btn btn-outline-success" name="addButton">Add bottle</a>
+                    <a href="/users" class="btn btn btn-outline-primary" name="usersButton">Users</a>
+                    <a href="/logout" class="btn btn btn-outline-secondary" name="logoutButton">Log out</a>
+                {{else}}
+                    <a href="/logout" class="btn btn btn-light" name="logoutButton">Log out</a>
+                {{/if}}
+            </div>
                 <a href="/dashboard" id="cancelSearch" class="btn btn-outline-danger" name="cancelSearch">&#10060;</a></div>
         </div>
 
