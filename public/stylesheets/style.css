@@ -68,3 +68,12 @@ body {
 #successAlert {
     width: 359px;
 }
+
+#buttonsGroupSearch {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 45px;
+}
+#searchGroupButton {
+    width: 123px;
+}

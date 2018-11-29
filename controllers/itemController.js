@@ -144,7 +144,15 @@ exports.deleteUser = function (req, res) {
 exports.searchItems = function (req, res) {
     Item.findAll({
         where: {
-            name: req.body.searchName
+            name: req.params.name
         }
-    }).then(items =>res.send(items));
+    }).then(items => res.render('dashboard', {
+        title: 'ghT Bar',
+        username: req.user.username,
+        items: items,
+        users: req.body.users,
+        countries: req.body.countries,
+        types: req.body.types,
+        admin: req.user.isAdmin
+    }));
 };

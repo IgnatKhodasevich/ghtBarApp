@@ -78,16 +78,19 @@
                 </div>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1">
-                <div class="btn-group">
-                {{#if admin}}
-                    <a href="/addItemPage" class="btn btn-outline-success" name="addButton">Add bottle</a>
-                    <a href="/users" class="btn btn btn-outline-primary" name="usersButton">Users</a>
-                    <a href="/logout" class="btn btn btn-outline-secondary" name="logoutButton">Log out</a>
-                {{else}}
-                    <a href="/logout" class="btn btn btn-light" name="logoutButton">Log out</a>
-                {{/if}}
+                <div class="btn-group search-group" id="buttonsGroupSearch">
+                    <a href="/searchItems/{{this.name}}"
+                       class="btn btn-outline-success"
+                       name="searchButton"
+                       id="searchGroupButton"
+                        >Search</a>
+                    <a href="/dashboard"
+                       class="btn btn btn-outline-primary search-group"
+                       name="resetButton"
+                       id="searchGroupButton"
+                        >Reset</a>
+
             </div>
-                <a href="/dashboard" id="cancelSearch" class="btn btn-outline-danger" name="cancelSearch">&#10060;</a></div>
         </div>
 
     </div>
