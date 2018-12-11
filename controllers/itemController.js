@@ -5,6 +5,10 @@ let Item = models.item;
 let Type = models.type;
 let User = models.user;
 let Country = models.country;
+let Sequelize = require("sequelize");
+const Op = Sequelize.Op;
+const express = require("express");
+const jsonParser = express.json();
 
 var exports = module.exports = {};
 
@@ -144,7 +148,9 @@ exports.deleteUser = function (req, res) {
 exports.searchItems = function (req, res) {
     Item.findAll({
         where: {
-            name: req.params.name
+            name: {
+                [Op.like]: '%' + req.body.searchName + '%'
+            }
         }
     }).then(items => res.render('dashboard', {
         title: 'ghT Bar',
@@ -154,5 +160,50 @@ exports.searchItems = function (req, res) {
         countries: req.body.countries,
         types: req.body.types,
         admin: req.user.isAdmin
-    }));
+    })).catch(error => {
+        console.log(error);
+
+    });
+};
+exports.searchType = function (req, res) {
+    console.log("LOGGER: " + req.body.searchType);
+    Item.findAll({
+        where: {
+            type: req.body.searchType
+        }
+    }).then(items => res.render('dashboard', {
+        title: 'ghT Bar',
+        username: req.user.username,
+        items: items,
+        users: req.body.users,
+        countries: req.body.countries,
+        types: req.body.types,
+        admin: req.user.isAdmin
+    })).catch(error => {
+        console.log(error);
+
+    });
+
+
+};
+
+exports.searchCountry = function (req, res) {
+    console.log("LOGGER: " + req.body.searchCountry);
+    Item.findAll({
+        where: {
+            countryOrigin: req.body.searchCountry
+        }
+    }).then(items => res.render('dashboard', {
+        title: 'ghT Bar',
+        username: req.user.username,
+        items: items,
+        users: req.body.users,
+        countries: req.body.countries,
+        types: req.body.types,
+        admin: req.user.isAdmin
+    })).catch(error => {
+        console.log(error);
+
+    });
+
 };

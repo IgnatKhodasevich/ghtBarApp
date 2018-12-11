@@ -15,10 +15,12 @@
             {{/if}}
       </div>
     </div>
+    <button type="button" class="btn btn-link" name="asc">A-Z</button>
+    <button type="button" class="btn btn-link" name="desc">Z-A</button>
 
 </div>
     <div class="row h-100 justify-content-center align-items-center">
-<form>
+<form method="post" action="/searchItems">
     <div class="search-box">
         <div class="row" id="searchRow">
             <div class="col-sm-3 col-md-6">
@@ -26,14 +28,17 @@
                        type="text"
                        id="searchName"
                        name="searchName"
-                       placeholder="Name"
+                       placeholder="Search by name..."
                        alt="Search by name">
             </div>
         </div>
         <div class="row" id="searchRow">
             <div class="col-sm-3 col-md-5 col-lg-5">
                 <div>
-                    <select class="form-control" id="searchSelect">
+                    <select class="form-control"
+                            id="searchSelectType"
+                            name="searchTypeSelect"
+                            onchange="onTypeChange()">
                         <option value="0"
                                 hidden
                         >Type</option>
@@ -48,7 +53,9 @@
             </div>
             <div class="col-sm-3 col-md-5 col-lg-5">
                 <div>
-                    <select class="form-control" id="countrySearchSelect">
+                    <select class="form-control"
+                            id="countrySearchSelect"
+                            onchange="onCountryChange()">
                         <option value="0"
                                 hidden
                         >Country</option>
@@ -79,11 +86,12 @@
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1">
                 <div class="btn-group search-group" id="buttonsGroupSearch">
-                    <a href="/searchItems/{{this.name}}"
+                    <button
                        class="btn btn-outline-success"
                        name="searchButton"
                        id="searchGroupButton"
-                        >Search</a>
+                       type="submit"
+                        >Search</button>
                     <a href="/dashboard"
                        class="btn btn btn-outline-primary search-group"
                        name="resetButton"
@@ -134,3 +142,36 @@
     {{/if}}
 </form>
     </div>
+
+<script>
+    function onTypeChange() {
+
+        let searchType = $("#searchSelectType option:selected").text();
+        let search = JSON.stringify({searchType: searchType});
+        let request = new XMLHttpRequest();
+
+        request.open("POST", "/searchType", true);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.addEventListener("load", function () {
+            console.log(request.response);
+            document.write(request.response);
+        });
+        request.send(search);
+    }
+
+    function onCountryChange() {
+
+        let searchCountry = $("#countrySearchSelect option:selected").text();
+        let search = JSON.stringify({searchCountry: searchCountry});
+        let request = new XMLHttpRequest();
+
+        request.open("POST", "/searchCountry", true);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.addEventListener("load", function () {
+            console.log(request.response);
+            document.write(request.response);
+        });
+        request.send(search);
+    }
+</script>
+

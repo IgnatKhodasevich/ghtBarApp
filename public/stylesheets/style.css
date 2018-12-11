@@ -48,6 +48,11 @@ body {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+#searchSelectType{
+    width: 245px;!important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 #searchSelectRow {
     margin-left: 20px;
 }

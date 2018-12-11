@@ -52,6 +52,10 @@ module.exports = function(app, passport) {
 
     app.get('/deleteUser/:id', itemController.deleteUser);
 
-    app.get('/searchItems/:name', itemController.searchItems);
+    app.post('/searchItems', itemController.searchItems);
+
+    app.post('/searchType', itemController.searchType);
+
+    app.post('/searchCountry', itemController.searchCountry);
 
 };
