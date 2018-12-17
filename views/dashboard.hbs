@@ -15,8 +15,8 @@
             {{/if}}
       </div>
     </div>
-    <button type="button" class="btn btn-link" name="asc">A-Z</button>
-    <button type="button" class="btn btn-link" name="desc">Z-A</button>
+    <a href="/orderAsc" class="btn btn-default" name="asc">A-Z</a>
+    <a href="/orderDesc" class="btn btn-default" name="desc">Z-A</a>
 
 </div>
     <div class="row h-100 justify-content-center align-items-center">
@@ -72,7 +72,10 @@
 
             <div class="col-sm-3 col-md-5 col-lg-5">
                 <div>
-                    <select class="form-control" id="searchSelect">
+                    <select class="form-control"
+                            id="searchSelect"
+                            name="searchSelect"
+                            onchange="onUserChange()">
                         <option value="0"
                                 hidden
                         >User</option>
@@ -117,6 +120,7 @@
                             <p>&bull; {{this.strength}} %</p>
                             <p>&bull; {{this.countryOrigin}} <img src="/static/images/blank.gif" class="flag flag-us" alt="USA" /></p><!-change->
                             <p>&bull; {{this.type}}</p>
+                            <p>&bull; User: {{this.user}}</p>
                         </div>
                         <div class="btn-group" id="buttonsGroup">
                             {{#if admin}}
@@ -166,6 +170,19 @@
         let request = new XMLHttpRequest();
 
         request.open("POST", "/searchCountry", true);
+        request.setRequestHeader("Content-Type", "application/json");
+        request.addEventListener("load", function () {
+            console.log(request.response);
+            document.write(request.response);
+        });
+        request.send(search);
+    }
+
+    function onUserChange() {
+        let searchUser = $("#searchSelect option:selected").text();
+        let search = JSON.stringify({searchUser: searchUser});
+        let request = new XMLHttpRequest();
+        request.open("POST", "/searchUser", true);
         request.setRequestHeader("Content-Type", "application/json");
         request.addEventListener("load", function () {
             console.log(request.response);

@@ -84,8 +84,8 @@ exports.addItem = function (req, res) {
                         name: req.body.name,
                         type: req.body.type,
                         strength: req.body.strength,
-                        userId: req.body.userId,
-                        countryOrigin: req.body.countryOrigin,
+                        user: req.body.user,
+                        countryOrigin: req.body.countryOfOrigin,
                         image: fileName
 
 
@@ -205,5 +205,80 @@ exports.searchCountry = function (req, res) {
         console.log(error);
 
     });
+
+};
+
+exports.searchUser = function (req, res) {
+    console.log("LOGGER: " + req.body.searchUser);
+    Item.findAll({
+        where: {
+            user: req.body.searchUser
+        }
+    }).then(items => res.render('dashboard', {
+        title: 'ghT Bar',
+        username: req.user.username,
+        items: items,
+        users: req.body.users,
+        countries: req.body.countries,
+        types: req.body.types,
+        admin: req.user.isAdmin
+    })).catch(error => {
+        console.log(error);
+
+    });
+
+};
+
+exports.orderAsc = function (req, res) {
+    return User.all().then(function (users) {
+        Country.all().then(function (countries) {
+            Item
+                .all({
+                    order: [
+                        ['name', 'ASC']
+                    ]}
+                ).then(function (items) {
+                Type.all().then(types => res.render('dashboard', {
+                    title: 'ghT Bar',
+                    username: req.user.username,
+                    items: items,
+                    users: users,
+                    countries: countries,
+                    types: types,
+                    admin: req.user.isAdmin
+                }));
+            })
+
+        });
+
+    });
+
+
+};
+
+exports.orderDesc = function (req, res) {
+    return User.all().then(function (users) {
+        Country.all().then(function (countries) {
+            Item
+                .all({
+                    order: [
+                        ['name', 'DESC']
+                    ]}
+                ).then(function (items) {
+                Type.all().then(types => res.render('dashboard', {
+                    title: 'ghT Bar',
+                    username: req.user.username,
+                    items: items,
+                    users: users,
+                    countries: countries,
+                    types: types,
+                    admin: req.user.isAdmin
+                }));
+            })
+
+        });
+
+    });
+
 
 };

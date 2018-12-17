@@ -29,8 +29,11 @@ module.exports = function(sequelize, Sequelize) {
 
     notes: {
         type: Sequelize.STRING
-    }
+    },
 
+    user: {
+        type: Sequelize.STRING
+    }
 });
     return Item;
 };

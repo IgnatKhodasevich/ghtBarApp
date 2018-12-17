@@ -58,4 +58,10 @@ module.exports = function(app, passport) {
 
     app.post('/searchCountry', itemController.searchCountry);
 
+    app.post('/searchUser', itemController.searchUser);
+
+    app.get('/orderAsc', itemController.orderAsc);
+
+    app.get('/orderDesc', itemController.orderDesc);
+
 };

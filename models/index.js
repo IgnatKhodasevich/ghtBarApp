@@ -36,8 +36,6 @@ const User = UserModel(sequelize, Sequelize);
 const Item = ItemModel(sequelize, Sequelize);
 const Type = TypeModel(sequelize, Sequelize);
 const Country = CountryModel(sequelize, Sequelize);
-User.hasOne(Item);
-Type.hasOne(Item);
 
 
 module.exports = db;
