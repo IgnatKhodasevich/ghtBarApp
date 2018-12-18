@@ -15,8 +15,7 @@ var exports = module.exports = {};
 exports.dashboard = function (req, res) {
     return User.all().then(function (users) {
         Country.all().then(function (countries) {
-            Item
-                .all().then(function (items) {
+            Item.all().then(function (items) {
                 Type.all().then(types => res.render('dashboard', {
                     title: 'ghT Bar',
                     username: req.user.username,
@@ -62,56 +61,68 @@ exports.addItemPage = function (req, res) {
 };
 
 exports.addItem = function (req, res) {
-    Type.all().then(function (types) {
-        User.all().then(function (users) {
-                Country.all().then(function (countries) {
-                    let data = {
-                        types: types,
-                        users: users,
-                        countries: countries
-                    };
-                    let imageFile = req.files.image;
-                    let fileName = req.body.name + '.png';
-                    if (imageFile) {
-                        imageFile.mv(path.join(__dirname, '..', 'public/images/', fileName), function (err) {
-                            if (err) {
-                                console.log(err.toString());
-                            }
+    Country.findOne({
+        where: {
+            name: req.body.countryOfOrigin
+        }
+    }).then(function (country) {
+        Type.all().then(function (types) {
+            User.all().then(function (users) {
+                    Country.all().then(function (countries) {
+                        let data = {
+                            types: types,
+                            users: users,
+                            countries: countries
+                        };
+                        let imageFile = req.files.image;
+                        let fileName = req.body.name + '.png';
+                        if (imageFile) {
+                            imageFile.mv(path.join(__dirname, '..', 'public/images/', fileName), function (err) {
+                                if (err) {
+                                    console.log(err.toString());
+                                }
 
-                        });
-                    }
-                    let itemData = {
-                        name: req.body.name,
-                        type: req.body.type,
-                        strength: req.body.strength,
-                        user: req.body.user,
-                        countryOrigin: req.body.countryOfOrigin,
-                        image: fileName
-
-
-                    };
-
-                    Item.create(itemData).then(function (newItem) {
-                        if (newItem) {
-                            console.log(newItem.toString());
-                            let success = 'The bottle ' + newItem.name + ' was created'
+                            });
                         }
 
 
-                    });
-                    res.render('addItemPage', {
-                        title: 'ghT Bar',
-                        username: req.user.username,
-                        types: data.types,
-                        users: data.users,
-                        countries: data.countries,
-                        success: false,
-                        error: req.flash('error')[0]
+                        let itemData = {
+                            name: req.body.name,
+                            type: req.body.type,
+                            strength: req.body.strength,
+                            user: req.body.user,
+                            countryOrigin: req.body.countryOfOrigin,
+                            image: fileName,
+                            code_iso: country.code_iso
+
+
+                        };
+
+                        Item.create(itemData).then(function (newItem) {
+                            if (newItem) {
+                                console.log(newItem.toString());
+                                let success = 'The bottle ' + newItem.name + ' was created'
+                            }
+
+
+                        });
+                        res.render('addItemPage', {
+                            title: 'ghT Bar',
+                            username: req.user.username,
+                            types: data.types,
+                            users: data.users,
+                            countries: data.countries,
+                            success: false,
+                            error: req.flash('error')[0]
+                        })
                     })
-                })
-            }
-        )
-    }).catch(function (error) {
+                }
+            )
+        })
+    })
+
+
+    .catch(function (error) {
         res.status(400).send(error);
     });
 };
@@ -146,24 +157,34 @@ exports.deleteUser = function (req, res) {
 };
 
 exports.searchItems = function (req, res) {
-    Item.findAll({
-        where: {
-            name: {
-                [Op.like]: '%' + req.body.searchName + '%'
-            }
-        }
-    }).then(items => res.render('dashboard', {
-        title: 'ghT Bar',
-        username: req.user.username,
-        items: items,
-        users: req.body.users,
-        countries: req.body.countries,
-        types: req.body.types,
-        admin: req.user.isAdmin
-    })).catch(error => {
-        console.log(error);
+    console.log("LOGGER: " + req.body.searchUser);
+    User.all().then(function (users) {
+        Country.all().then(function (countries) {
+            Type.all().then(function (types) {
+                Item.findAll({
+                    where: {
+                        name: {
+                            [Op.like]: '%' + req.body.searchName + '%'
+                        }
+                    }
+                }).then(items => res.render('dashboard', {
+                    title: 'ghT Bar',
+                    username: req.user.username,
+                    items: items,
+                    users: users,
+                    countries: countries,
+                    types: types,
+                    admin: req.user.isAdmin
+                })).catch(error => {
+                    console.log(error);
+                });
+            })
+
+        });
 
     });
+
+
 };
 exports.searchType = function (req, res) {
     console.log("LOGGER: " + req.body.searchType);

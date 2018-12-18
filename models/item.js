@@ -33,6 +33,10 @@ module.exports = function(sequelize, Sequelize) {
 
     user: {
         type: Sequelize.STRING
+    },
+
+    code_iso: {
+        type: Sequelize.STRING
     }
 });
     return Item;
