@@ -174,7 +174,8 @@ exports.searchItems = function (req, res) {
                     users: users,
                     countries: countries,
                     types: types,
-                    admin: req.user.isAdmin
+                    admin: req.user.isAdmin,
+                    filter: 'Result of searching by name'
                 })).catch(error => {
                     console.log(error);
                 });
@@ -199,7 +200,8 @@ exports.searchType = function (req, res) {
         users: req.body.users,
         countries: req.body.countries,
         types: req.body.types,
-        admin: req.user.isAdmin
+        admin: req.user.isAdmin,
+        filter: 'Filtered by Type'
     })).catch(error => {
         console.log(error);
 
@@ -221,7 +223,8 @@ exports.searchCountry = function (req, res) {
         users: req.body.users,
         countries: req.body.countries,
         types: req.body.types,
-        admin: req.user.isAdmin
+        admin: req.user.isAdmin,
+        filter: 'Filtered by Country'
     })).catch(error => {
         console.log(error);
 
@@ -242,7 +245,8 @@ exports.searchUser = function (req, res) {
         users: req.body.users,
         countries: req.body.countries,
         types: req.body.types,
-        admin: req.user.isAdmin
+        admin: req.user.isAdmin,
+        filter: 'Filtered by User'
     })).catch(error => {
         console.log(error);
 

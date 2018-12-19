@@ -82,3 +82,8 @@ body {
 #searchGroupButton {
     width: 123px;
 }
+
+#filterMessage {
+    margin-left: 20px;
+    color: darkslategrey;
+}
