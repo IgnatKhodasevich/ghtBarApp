@@ -201,7 +201,7 @@ exports.searchType = function (req, res) {
         countries: req.body.countries,
         types: req.body.types,
         admin: req.user.isAdmin,
-        filter: 'Filtered by Type'
+        filter: 'Filtered by Type: ' + req.body.searchType
     })).catch(error => {
         console.log(error);
 
@@ -224,7 +224,7 @@ exports.searchCountry = function (req, res) {
         countries: req.body.countries,
         types: req.body.types,
         admin: req.user.isAdmin,
-        filter: 'Filtered by Country'
+        filter: 'Filtered by Country: ' + req.body.searchCountry
     })).catch(error => {
         console.log(error);
 
@@ -246,7 +246,7 @@ exports.searchUser = function (req, res) {
         countries: req.body.countries,
         types: req.body.types,
         admin: req.user.isAdmin,
-        filter: 'Filtered by User'
+        filter: 'Filtered by User: ' + req.body.searchUser
     })).catch(error => {
         console.log(error);
 
