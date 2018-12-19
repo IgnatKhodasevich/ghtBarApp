@@ -33,8 +33,8 @@
             </div>
         </div>
         <div class="row" id="searchRow">
-            <div class="col-sm-3 col-md-5 col-lg-5">
-                <div>
+            <div class="col-sm-5 col-md-7 col-lg-7">
+
                     <select class="form-control"
                             id="searchSelectType"
                             name="searchTypeSelect"
@@ -48,11 +48,11 @@
                             {{/each}}
                         {{/if}}
                     </select>
-                </div>
+
 
             </div>
-            <div class="col-sm-3 col-md-5 col-lg-5">
-                <div>
+            <div class="col-sm-5 col-md-5 col-lg-5">
+
                     <select class="form-control"
                             id="countrySearchSelect"
                             onchange="onCountryChange()">
@@ -65,13 +65,12 @@
                             {{/each}}
                         {{/if}}
                     </select>
-                </div>
+
             </div>
         </div>
         <div class="row" id="searchRow">
 
-            <div class="col-sm-3 col-md-5 col-lg-5">
-                <div>
+            <div class="col-sm-5 col-md-7 col-lg-7">
                     <select class="form-control"
                             id="searchSelect"
                             name="searchSelect"
@@ -85,7 +84,7 @@
                             {{/each}}
                         {{/if}}
                     </select>
-                </div>
+
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1">
                 <div class="btn-group search-group" id="buttonsGroupSearch">
@@ -104,6 +103,7 @@
             </div>
         </div>
 
+    </div>
     </div>
     {{#if items}}
 
@@ -144,6 +144,7 @@
     {{else}}
         <p><em>There are currently no items.</em></p>
     {{/if}}
+
 </form>
     </div>
 
