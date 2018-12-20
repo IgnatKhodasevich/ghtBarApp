@@ -98,13 +98,21 @@ body {
 }
 
 #countryOriginRow {
-    margin-top: -10px;
+    margin-top: -15px;
 }
 
-#typeRow {
-    margin-top: -10px;
+#strengthRow {
+    margin-top: -15px;
 }
 
 #userRow {
-    margin-top: -10px;
+    margin-top: -15px;
 }
+
+#descriptionBody {
+    margin-top: 15px;
+}
+
+/*.descriptionText {*/
+    /*font-size: 15px;*/
+/*}*/

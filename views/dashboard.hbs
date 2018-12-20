@@ -122,10 +122,12 @@
                         <div class="media-body">
                             <input type="hidden" name="{{this.id}}"/>
                             <h4 id="itemNameRow">{{this.name}}</h4>
-                            <p id="strengthRow">&bull; {{this.strength}} %</p>
-                            <p id="countryOriginRow">&bull; {{this.countryOrigin}} <img src="/static/images/blank.gif" class="{{this.code_iso}}" alt="USA" /></p><!-change->
-                            <p id="typeRow">&bull; {{this.type}}</p>
-                            <p id="userRow">&bull; User: {{this.user}}</p>
+                            <div id="descriptionBody">
+                                <p id="typeRow" class="descriptionText">&bull; {{this.type}}</p>
+                            <p id="strengthRow" class="descriptionText">&bull; {{this.strength}} %</p>
+                            <p id="countryOriginRow" class="descriptionText">&bull; {{this.countryOrigin}} <img src="/static/images/blank.gif" class="{{this.code_iso}}" alt="USA" /></p><!-change->
+                            <p id="userRow" class="descriptionText">&bull; Owner: {{this.user}}</p>
+                            </div>
                         </div>
                         <div class="btn-group" id="buttonsGroup">
                             {{#if admin}}
