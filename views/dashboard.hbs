@@ -117,15 +117,15 @@
                     <div class="media">
                         <img src="/static/images/{{this.image}}"
                              class="align-self-center mr-3"
-                             style="width:220px; height: 220px"
+                             style="width:180px; height: 180px"
                              alt="{{this.name}}">
                         <div class="media-body">
                             <input type="hidden" name="{{this.id}}"/>
-                            <h4>{{this.name}}</h4>
-                            <p>&bull; {{this.strength}} %</p>
-                            <p>&bull; {{this.countryOrigin}} <img src="/static/images/blank.gif" class="{{this.code_iso}}" alt="USA" /></p><!-change->
-                            <p>&bull; {{this.type}}</p>
-                            <p>&bull; User: {{this.user}}</p>
+                            <h4 id="itemNameRow">{{this.name}}</h4>
+                            <p id="strengthRow">&bull; {{this.strength}} %</p>
+                            <p id="countryOriginRow">&bull; {{this.countryOrigin}} <img src="/static/images/blank.gif" class="{{this.code_iso}}" alt="USA" /></p><!-change->
+                            <p id="typeRow">&bull; {{this.type}}</p>
+                            <p id="userRow">&bull; User: {{this.user}}</p>
                         </div>
                         <div class="btn-group" id="buttonsGroup">
                             {{#if admin}}

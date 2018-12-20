@@ -1,5 +1,6 @@
 body {
-  background-color: #ffffff !important;;
+  background-color: #ffffff !important;
+  /*background-color: #FAFAFA !important;*/
 
 }
 .search-box {
@@ -9,6 +10,9 @@ body {
     margin-top: 10px;
 }
 
+#title {
+    font-family: 'Aleo', serif;
+}
 #loginButtons {
     width: 193px; !important;
 }
@@ -86,4 +90,21 @@ body {
 #filterMessage {
     margin-left: 20px;
     color: darkslategrey;
+}
+
+#itemNameRow {
+    width: 240px;
+    font-size: 26px;
+}
+
+#countryOriginRow {
+    margin-top: -10px;
+}
+
+#typeRow {
+    margin-top: -10px;
+}
+
+#userRow {
+    margin-top: -10px;
 }
